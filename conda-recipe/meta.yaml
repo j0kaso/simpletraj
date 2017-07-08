@@ -1,0 +1,44 @@
+{% set name = "simpletraj" %}
+{% set version = "v0.5.1" %}
+{% set sha256 = "c6a62c5d0727240c26f0ac58d40e8e7c66e15233a7e38b2b8a20720b04b1cc69" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://github.com/j0kaso/{{ name }}/archive/{{ version }}.tar.gz
+  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 1
+  script: python setup.py install
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - numpy
+    - msinttypes  # [win and py27]
+    - zlib
+
+  run:
+    - python
+    - setuptools
+    - numpy
+
+test:
+  imports:
+    - simpletraj
+
+about:
+  home: https://github.com/arose/simpletraj
+  license: LGPL-2.1
+  summary: "Lightweight coordinate-only trajectory reader."
+  description: |
+    Simpletraj is a lightweight coordinate-only trajectory reader based on code form 
+    GROMACS, MDAnalysis and VMD.
+  dev_url: https://github.com/arose/simpletraj
+

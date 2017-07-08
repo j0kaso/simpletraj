@@ -1,0 +1,22 @@
+language: generic
+
+branches:
+  only:
+    - master
+
+#os:
+#  - linux
+#  - osx
+#  - windows
+
+env:
+  matrix:
+    - python=2.7
+    - python=3.3
+    - python=3.5
+
+script:
+  - conda build conda-recipe
+
+after_success:
+  - echo "after_success"
