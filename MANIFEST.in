@@ -2,3 +2,6 @@ global-include *.c
 global-include *.h
 include LICENSE README.md
 include setup.py
+include versioneer.py
+include simpletraj/_version.py
+global-exclude *.pyc

@@ -3,8 +3,18 @@
 import sys
 from setuptools import setup, Extension, find_packages
 
+import os
 
-VERSION = "0.5"
+import versioneer
+from versioneer import get_cmdclass
+sdist = get_cmdclass()['sdist']
+build_py = get_cmdclass()['build_py']
+
+here = os.path.dirname(os.path.abspath(__file__))
+node_root = os.path.join(here, 'js')
+is_repo = os.path.exists(os.path.join(here, '.git'))
+
+
 CLASSIFIERS = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
@@ -94,7 +104,8 @@ if __name__ == '__main__':
         author = "Alexander S. Rose",
         author_email = "alexander.rose@weirdbyte.de",
         description = "Lightweight coordinate-only trajectory reader based on code from GROMACS, MDAnalysis, VMD.",
-        version = VERSION,
+        version = versioneer.get_version(),
+		cmdclass = versioneer.get_cmdclass(),
         classifiers = CLASSIFIERS,
         license = "GPL2",
         url = "https://github.com/arose/simpletraj",
